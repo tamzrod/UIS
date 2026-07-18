@@ -1,95 +1,126 @@
 # Universal Information Standard (UIS)
 
-**Universal Information Standard (UIS)** is an open specification for representing information in a structured, interoperable, and implementation-independent format.
+**UIS maps information from any source into a canonical structure—without modifying the original.**
 
-## Status
+## The Problem
 
-| Attribute | Value |
-|-----------|-------|
-| Status | Working Draft |
-| Version | 0.3.0 |
-| Stability | Experimental |
+Information exists in countless formats:
+- PDFs and documents
+- Sensor readings (COMTRADE, PLC tags)
+- Images (JPEG, DICOM)
+- Database records
+- Audio and video
+- Email and messages
 
-### Draft Progress
+Each uses different structures. This fragmentation makes it hard to:
+- Exchange information across domains
+- Build systems that work with diverse types
+- Maintain quality and traceability
 
-| Document | Status |
-|----------|--------|
-| 001 Scope | **Authored** |
-| 003 Terms and Definitions | **Authored** |
-| 004 Design Principles | **Authored** |
-| 005 Architecture | **Authored** |
-| 006 Information Model | Placeholder |
-| 006 General Requirements | Placeholder |
-| 007 Fundamental Requirements | Placeholder |
-| 008 Identity | Placeholder |
-| 009 Evidence | Placeholder |
-| 010 Relationships | Placeholder |
-| 011 Provenance | Placeholder |
-| 012 Conformance | Placeholder |
-| 013 Versioning | Placeholder |
+## The Core Insight
 
-## About UIS
+> **UIS does not replace or transform original artifacts. UIS maps information from artifacts into a canonical information model.**
 
-UIS provides a universal, domain-neutral model for representing information that can be applied across various domains and industries. The specification defines concepts, terminology, principles, requirements, and conformance criteria without prescribing specific implementation technologies.
+Original artifacts stay unchanged. UIS creates a universal representation that coexists with source data.
 
-## Documentation
+```
+┌─────────────┐     ┌─────────┐     ┌────────────────────┐
+│   Reality   │────▶│Artifacts│────▶│   Mapping Layer    │
+└─────────────┘     └─────────┘     └─────────┬──────────┘
+                                               │
+                    ┌──────────────────────────▼──────────┐
+                    │   Canonical Information Record       │
+                    └──────────────────────────┬──────────┘
+                                               │
+                    ┌──────────────────────────▼──────────┐
+                    │        Knowledge Systems            │
+                    └─────────────────────────────────────┘
+```
 
-The formal specification is organized into numbered sections within the `docs/` directory:
+## What UIS Standardizes
 
-- [Foreword](docs/000-foreword.md) — History and development of UIS
-- [Scope](docs/001-scope.md) — What UIS covers and its field of application
-- [Normative References](docs/002-normative-references.md) — Referenced standards and documents
-- [Terms and Definitions](docs/003-terms-and-definitions.md) — Terminology used in UIS
-- [Design Principles](docs/004-design-principles.md) — Fundamental principles guiding UIS design
-- [Architecture](docs/005-architecture.md) — High-level architectural framework
-- [Information Model](docs/006-information-model.md) — Core abstract model
-- [General Requirements](docs/006-general-requirements.md) — General requirements
-- [Fundamental Requirements](docs/007-fundamental-requirements.md) — Fundamental requirements
-- [Identity](docs/008-identity.md) — Entity identification
-- [Evidence](docs/009-evidence.md) — Assertion support mechanisms
-- [Relationships](docs/010-relationships.md) — Entity connections
-- [Provenance](docs/011-provenance.md) — Origin and history tracking
-- [Conformance](docs/012-conformance.md) — Conformance requirements
-- [Versioning](docs/013-versioning.md) — Change management
+UIS defines the **structure** of information records:
 
-### Governance
+| Element | Purpose |
+|---------|---------|
+| Identity | How records are identified |
+| Classification | How records are categorized |
+| Content | The actual information |
+| Relationships | How records connect |
+| Provenance | Where information came from |
 
-Governance documents define the policies and procedures for UIS development:
+UIS does **NOT** standardize:
+- File formats (PDF, JSON, XML)
+- Databases
+- APIs
+- Programming languages
+- Business rules
 
-- [Specification Lifecycle](governance/000-specification-lifecycle.md) — Maturity stages and transitions
-- [Versioning Policy](governance/001-versioning-policy.md) — Version scheme and policies
-- [Decision Process](governance/002-decision-process.md) — Roles and decision procedures
-- [Conformance Policy](governance/003-conformance-policy.md) — Conformance testing policies
+## Current Status
 
-UIS governance is designed to scale from single-author development to formal standards organizations. See the Decision Process document for details on governance roles (Author, Editor, Reviewer, Approver).
+**Stage**: Early research and design
 
-## Non-Goals
+**What we've established**:
+- The information mapping architecture concept
+- A draft scope and terminology
+- Foundational design principles
+- The idea that original artifacts should be preserved
 
-UIS is NOT:
+**What we don't know yet**:
+- The exact structure of canonical records
+- How to handle domain-specific semantics
+- How quality and confidence should work
+- The best approach to evidence and provenance
 
-- a database
-- a programming library
-- a file format
-- an ontology language
-- an AI model
-- a search engine
-- an application framework
+## Research Questions
 
-UIS defines concepts and requirements; it does not prescribe implementations.
+We're exploring fundamental questions before writing a formal specification:
 
-## Design Philosophy
+1. **What is information?** (docs/DISCUSSION-0001-information.md)
+2. **What should UIS actually scope?** (docs/DISCUSSION-0002-scope-of-uis.md)
+3. **Can one model represent everything?** (docs/DISCUSSION-0003-canonical-information-model.md)
+4. **What are UIS boundaries?** (docs/DISCUSSION-0004-boundaries.md)
 
-UIS follows the principles of international standards organizations such as ISO, IEC, and W3C:
+See [docs/PROJECT-STATUS.md](docs/PROJECT-STATUS.md) for details.
 
-- **Implementation independence** — UIS does not prescribe programming languages, file formats, or API designs
-- **Domain neutrality** — Applicable across industries without favoring any particular domain
-- **Conceptual clarity** — Focus on abstract concepts rather than concrete implementations
-- **Interoperability** — Enable cross-system information sharing and understanding
+## Repository Structure
+
+```
+/
+├── README.md              # This file
+├── LICENSE                # Apache 2.0
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+└── docs/
+    ├── 001-scope.md                  # What UIS covers
+    ├── 003-terms-and-definitions.md # Key terminology
+    ├── 004-design-principles.md      # Core principles
+    ├── 005-architecture.md           # High-level architecture
+    ├── DISCUSSION-0001*.md           # Research: what is information?
+    ├── DISCUSSION-0002*.md           # Research: what should UIS scope?
+    ├── DISCUSSION-0003*.md           # Research: canonical model feasibility
+    ├── DISCUSSION-0004*.md           # Research: boundaries and interfaces
+    ├── ARCHITECTURE-INSIGHT-0001*.md # Core architectural direction
+    └── archive/                      # Previous work, placeholders
+```
+
+## Getting Started
+
+1. Read [docs/ARCHITECTURE-INSIGHT-0001-information-mapping.md](docs/ARCHITECTURE-INSIGHT-0001-information-mapping.md) for the core idea
+2. Review the discussions to understand the open questions
+3. Check [docs/PROJECT-STATUS.md](docs/PROJECT-STATUS.md) for current state
 
 ## Participation
 
-We welcome contributions from individuals and organizations interested in advancing the Universal Information Standard. Please review our contribution guidelines before submitting changes.
+This is an early-stage research project. We're exploring ideas, not building a product.
+
+To contribute:
+- Read the discussion documents
+- Share feedback on the approach
+- Suggest additional research directions
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-This project is released under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+Apache License 2.0 — see [LICENSE](LICENSE)
