@@ -14,54 +14,76 @@ a) The representation of information in any domain or discipline
 
 b) The development of domain-specific standards that require information representation
 
-c) The design of systems that create, process, store, or transmit information
+c) The evaluation of information quality and interoperability
 
-d) The evaluation of information quality and interoperability
+d) The development of conformance criteria for information representations
 
-e) The development of conformance criteria for information representations
+## 3. What UIS Is
 
-## 3. Objectives
+UIS defines the canonical structure for representing information that has been extracted from source artifacts.
 
-The objectives of UIS are to:
+UIS provides:
 
-a) Provide a consistent vocabulary for describing information and its properties
+a) A vocabulary for describing information records
 
-b) Define an abstract model for information that is independent of specific technologies
+b) An abstract model for information structure
 
-c) Establish principles for structuring information in ways that support interoperability
+c) Principles for structuring information to support interoperability
 
-d) Enable the representation of information provenance, relationships, and evidence
+d) Requirements for information provenance and relationships
 
-e) Support the evolution of information over time through defined mechanisms
+e) Conformance criteria for representations claiming UIS compliance
 
-f) Specify conformance requirements for representations claiming compliance
+## 4. What UIS Is NOT
 
-## 4. Out of Scope
+UIS does NOT define:
 
-The following are outside the scope of UIS:
+a) **Extraction methods**: How information is extracted from artifacts (parsers, OCR, AI, human review)
 
-a) **Specific encodings**: UIS does not define specific file formats, data structures, or encoding schemes
+b) **Storage mechanisms**: How information is stored (databases, files, cloud storage)
 
-b) **Implementation technologies**: UIS does not prescribe programming languages, operating systems, or hardware
+c) **Consumption methods**: How information is consumed (search, analytics, AI reasoning)
 
-c) **Transport mechanisms**: UIS does not define network protocols or transport mechanisms
+d) **Specific encodings**: File formats, data structures, or encoding schemes
 
-d) **Presentation methods**: UIS does not address user interface design or presentation methods
+e) **Implementation technologies**: Programming languages, operating systems, or hardware
 
-e) **Domain semantics**: UIS does not define domain-specific meanings or business rules
+f) **Transport mechanisms**: Network protocols or transport mechanisms
 
-f) **Security mechanisms**: UIS does not define authentication, authorization, or security mechanisms
+g) **Presentation methods**: User interface design or presentation methods
 
-g) **Storage technologies**: UIS does not prescribe storage architectures or database technologies
+h) **Domain semantics**: Domain-specific meanings or business rules
 
-## 5. Relationship to Other Standards
+i) **Security mechanisms**: Authentication, authorization, or security mechanisms
+
+## 5. The Scope Boundary
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      OUTSIDE UIS                              │
+│                  Extraction / Ingestion                        │
+│         (PDF parsing, OCR, AI, human review, etc.)         │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+═══════════════════════════════════════════════════════════════
+                         UIS STARTS HERE
+═══════════════════════════════════════════════════════════════
+    Canonical Information Record Structure
+═══════════════════════════════════════════════════════════════
+                          UIS ENDS HERE
+═══════════════════════════════════════════════════════════════
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       OUTSIDE UIS                             │
+│              Storage / Search / Analytics / AI               │
+│                    (Databases, search engines, apps)        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## 6. Relationship to Other Standards
 
 UIS is designed to complement, rather than compete with, existing standards. UIS provides a conceptual foundation that may inform the development of domain-specific standards while remaining independent of any particular implementation.
 
 Organizations developing or maintaining domain-specific representations may use UIS as a reference framework for ensuring conceptual alignment and potential interoperability with other representations.
-
-## 6. Stability and Evolution
-
-UIS is designed to be stable. Changes to UIS follow a defined process that ensures backward compatibility where possible and provides clear migration paths when breaking changes are unavoidable.
-
-The versioning policy for UIS is specified in [governance/001-versioning-policy.md](governance/001-versioning-policy.md).

@@ -1,7 +1,7 @@
-# ARCHITECTURE-INSIGHT-0001: Information Mapping Architecture
+# ARCHITECTURE-INSIGHT-0001: The UIS Scope Boundary
 
 **Document Number**: ARCHITECTURE-INSIGHT-0001
-**Title**: UIS as an Information Mapping Architecture
+**Title**: Clarifying What UIS Actually Standardizes
 **Status**: Exploratory — Architectural Insight
 **Date**: 2026-07-18
 **Author**: UIS Working Group
@@ -10,252 +10,226 @@
 - DISCUSSION-0002: Scope of UIS
 - DISCUSSION-0003: Canonical Information Model
 - DISCUSSION-0004: Boundaries of UIS
-- ADR-0001: UIS Scope Definition
 
 ---
 
-## 1. Architectural Insight
+## 1. The Core Clarification
 
-### 1.1 The Central Insight
+### 1.1 The Key Insight
 
-Through analysis of what information is, what UIS should scope, and how it relates to existing standards, a fundamental architectural insight has emerged:
+Through analysis of what UIS should and should not scope, a fundamental clarification has emerged:
 
-> **UIS does not replace or transform original artifacts. UIS maps information from artifacts into a canonical information model.**
+> **UIS defines the canonical representation of extracted information. UIS does not define how information is extracted, stored, or consumed.**
 
-This insight resolves several tensions in the previous discussions:
+This means:
 
-- **Canonical vs. Domain-Specific**: Rather than choosing between a single universal model and multiple domain models, UIS provides a canonical representation that information from any domain can be mapped into.
+| Concern | Who Defines It |
+|---------|---------------|
+| Extraction | Outside UIS (parsers, OCR, AI, humans) |
+| Canonical Representation | **UIS** |
+| Storage | Outside UIS (databases, files) |
+| Consumption | Outside UIS (search, analytics, AI) |
 
-- **Structure vs. Meaning**: Rather than deciding whether UIS addresses syntactic or semantic information, UIS maps structured information while acknowledging that meaning remains domain-specific.
+### 1.2 Why This Scope is Correct
 
-- **Independence vs. Utility**: Rather than choosing between maximum abstraction and maximum utility, UIS provides a neutral layer that bridges artifacts and knowledge systems.
+The scope boundary is fundamental because:
 
-### 1.2 Why This Distinction is Fundamental
+1. **Separation of Concerns**: Extraction, representation, storage, and consumption are independent concerns that evolve at different rates.
 
-The distinction between **artifact preservation** and **information mapping** is fundamental because:
+2. **Enables Interoperability**: A common representation enables any extractor to produce records that any consumer can understand.
 
-1. **Preserves Fidelity**: Original artifacts remain unchanged, ensuring that the source of information is never compromised by the mapping process.
+3. **Preserves Choice**: Organizations can choose their own extraction methods, storage systems, and applications while still achieving interoperability.
 
-2. **Enables Interoperability**: By mapping diverse artifacts into a common structure, UIS enables interoperability without requiring standardization of artifacts themselves.
+4. **Single Responsibility**: UIS focuses on one thing—defining the canonical record structure—rather than trying to be everything to everyone.
 
-3. **Supports Multiple Views**: Different systems can create different mappings from the same artifact, supporting diverse use cases without conflict.
+### 1.3 What This Means
 
-4. **Separates Concerns**: The mapping process is separate from the information structure, allowing each to evolve independently.
+UIS is NOT:
+- An ingestion framework
+- An ETL pipeline
+- An OCR system
+- A parser
+- An AI system
+- A database
+- A search engine
+- An investigation platform
+- An application
 
-5. **Enables Traceability**: Because artifacts are preserved and referenced, any mapped information can be traced back to its source.
+UIS IS:
+- A specification for the structure of information records
+- A vocabulary for describing information
+- A set of principles for representing information
+- A conformance framework for information representations
 
 ---
 
-## 2. Layered Architecture
+## 2. The Scope Boundary
 
 ### 2.1 Architecture Overview
 
-The UIS information mapping architecture consists of five conceptual layers:
-
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    KNOWLEDGE SYSTEMS                      │
-│         (AI systems, decision support, reasoning)        │
-├─────────────────────────────────────────────────────────┤
-│                 CANONICAL INFORMATION RECORD              │
-│        (UIS-conformant structured information)            │
-├─────────────────────────────────────────────────────────┤
-│                      MAPPING LAYER                        │
-│       (Transform artifacts to canonical structure)        │
-├─────────────────────────────────────────────────────────┤
-│                       ARTIFACTS                           │
-│           (Original information sources)                  │
-├─────────────────────────────────────────────────────────┤
-│                        REALITY                             │
-│            (Objects, events, states of being)           │
-└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                         OUTSIDE UIS                          │
+│           EXTRACTION / INGESTION LAYER                      │
+│  (PDF parsing, OCR, AI, rule-based extraction, human review) │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  This layer is NOT standardized by UIS.                     │
+│  Any extraction method may produce UIS-conformant records.  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+═══════════════════════════════════════════════════════════════
+                    UIS STANDARDIZES THIS
+═══════════════════════════════════════════════════════════════
+┌─────────────────────────────────────────────────────────────┐
+│            CANONICAL INFORMATION RECORD LAYER                │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │  Identity  │  Classification  │  Content              │  │
+│  │  Provenance (→ source artifact)  │  Relationships      │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│  UIS defines the STRUCTURE of information records only.     │
+│  UIS does not define how records are extracted or stored.   │
+└─────────────────────────────────────────────────────────────┘
+═══════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         OUTSIDE UIS                          │
+│              CONSUMPTION LAYER                               │
+│         (Databases, search, analytics, AI, apps)            │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│  This layer is NOT standardized by UIS.                     │
+│  Any consumer may read UIS-conformant records.              │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 2.2 Layer Responsibilities
 
-#### Reality Layer
+#### Extraction Layer (Outside UIS)
 
-**Description**: The actual state of the world—objects, events, processes, and their properties.
-
-**Responsibilities**:
-- Contains the ground truth that information represents
-- Is not created, modified, or controlled by UIS
-- Exists independently of any information system
-
-**Example**: A machine's current temperature, a patient's diagnosis, a contract's terms.
-
-#### Artifacts Layer
-
-**Description**: The recorded representations of reality created by various systems, organizations, and technologies.
+**Description**: The process of extracting information from original sources.
 
 **Responsibilities**:
-- Captures information about reality in various formats
-- Preserves original structure and encoding
-- Serves as the authoritative source for mapped information
-- Remains unmodified by UIS
-
-**Examples**: PDF documents, database records, sensor logs, DICOM images, email messages.
-
-#### Mapping Layer
-
-**Description**: The process of extracting and transforming information from artifacts into the canonical UIS structure.
-
-**Responsibilities**:
-- Interprets artifact content
+- Interprets source content
 - Extracts relevant information elements
-- Transforms information into canonical structure
-- Records mapping provenance
-- May be performed by humans, AI, or automated systems
+- Produces UIS-conformant records
+- May be performed by parsers, AI, rule-based systems, or humans
 
-**Note**: The mapping process is NOT standardized by UIS. UIS standardizes only the output: the canonical information record.
+**Examples**: PDF parser, OCR system, AI extractor, human reviewer
 
-#### Canonical Information Record Layer
+**Note**: The extraction process is NOT standardized by UIS.
 
-**Description**: The UIS-conformant representation of information extracted from artifacts.
+#### Canonical Information Record Layer (UIS)
+
+**Description**: The UIS-conformant representation of extracted information.
 
 **Responsibilities**:
 - Provides a universal structure for information
-- Maintains semantic fidelity to source artifacts
-- Includes provenance references to original artifacts
+- References source artifacts (provenance)
 - Enables interoperability across domains
-- Serves as the basis for knowledge system inputs
+- Serves as the contract between extractors and consumers
 
-**Note**: This is the layer that UIS standardizes.
+**Note**: This is EXACTLY what UIS standardizes.
 
-#### Knowledge Systems Layer
+#### Consumption Layer (Outside UIS)
 
-**Description**: Systems that consume canonical information records for various purposes.
+**Description**: Systems that store, search, analyze, or otherwise use information records.
 
 **Responsibilities**:
-- Receives and processes canonical information
-- Performs reasoning, analysis, and decision support
-- Generates new knowledge from information
-- May produce new canonical records (for derived information)
+- Stores records in any system
+- Performs search and retrieval
+- Applies analytics and AI
+- Generates new records (from analysis)
 
-**Examples**: AI systems, decision support systems, analytics platforms, expert systems.
+**Examples**: Databases, search engines, analytics platforms, AI systems, applications
+
+**Note**: How records are consumed is NOT standardized by UIS.
 
 ---
 
-## 3. Artifact Preservation Principle
+## 3. Source Artifact Principle
 
 ### 3.1 The Principle
 
-UIS operates under a fundamental **artifact preservation principle**:
-
-> **Original artifacts remain unchanged. UIS never requires conversion of source artifacts. UIS references artifacts rather than replacing them.**
+> **Canonical records reference source artifacts. UIS does not require modification or preservation of original artifacts.**
 
 This principle has several implications:
 
-1. **No Forced Transformation**: UIS does not require organizations to convert their artifacts to any specific format. Artifacts remain in their native form.
+1. **No Forced Transformation**: UIS does not require organizations to modify their source artifacts. Artifacts remain in their native form.
 
-2. **Reference, Not Replication**: UIS records contain references to original artifacts, not copies of artifact content (though content may be included).
+2. **Reference, Not Replication**: UIS records contain references to original artifacts, not copies of artifact content.
 
-3. **Multiple Mappings**: The same artifact may be mapped multiple times by different systems for different purposes.
+3. **Provenance Required**: Every canonical record should reference its source artifact, enabling traceability.
 
-4. **Traceability**: Any piece of information in a canonical record can be traced back to its source artifact.
+4. **Artifact Independence**: Source artifacts may be in any format, stored anywhere, managed by any system.
 
 ### 3.2 Artifact Examples
 
-The following examples illustrate the artifact preservation principle across diverse domains:
+The following examples illustrate source artifacts across diverse domains:
 
-| Domain | Artifact Type | What UIS Maps |
-|--------|---------------|---------------|
-| Documents | PDF | Extract metadata, text references, author, dates, structure |
-| Industrial | COMTRADE | Extract sensor readings, timestamps, alarm states |
-| Imaging | JPEG | Extract capture metadata, spatial dimensions, camera settings |
-| Medical | DICOM | Extract patient info, modality, acquisition parameters |
-| Communications | Email | Extract sender, recipients, subject, timestamp, body references |
-| Manufacturing | PLC Tags | Extract current values, quality states, timestamps |
-| Databases | Records | Extract field values, schema references, timestamps |
-| Audio | WAV/MP3 | Extract duration, sample rate, format metadata |
-| Video | MP4 | Extract duration, frame rate, codec, timestamps |
-| Legal | Contracts | Extract parties, terms, dates, clause references |
+| Domain | Artifact Type | Example Extractors |
+|--------|---------------|-------------------|
+| Documents | PDF | PDF parser, text extractor |
+| Industrial | COMTRADE | Sensor system, data logger |
+| Imaging | JPEG | Camera, scanner |
+| Medical | DICOM | Imaging modality |
+| Communications | Email | Mail server |
+| Manufacturing | PLC Tags | PLC, SCADA |
+| Databases | Records | Database system |
+| Audio | WAV/MP3 | Audio recorder |
+| Video | MP4 | Video recorder |
+| Legal | Contracts | Document system |
 
-### 3.3 What UIS Preserves
-
-UIS does NOT preserve:
-- Original artifact encoding (binary format)
-- Native application structures
-- Proprietary formats
-- Full artifact content (only references and extracted elements)
-
-UIS DOES preserve:
-- References to original artifacts (identifiers, locations)
-- Extracted information elements
-- Mapping provenance (who/what mapped, when)
-- Relationship to source artifacts
+**Note**: These extractors are OUTSIDE UIS. UIS only standardizes the structure of the extracted records.
 
 ---
 
-## 4. Mapping Principle
+## 4. Extraction Independence Principle
 
 ### 4.1 The Principle
 
-The **mapping principle** states:
-
-> **UIS standardizes the resulting information representation, not the extraction process.**
+> **UIS standardizes the structure of information records, not how information is extracted.**
 
 This principle separates two distinct concerns:
 
-1. **Mapping Process**: How information is extracted from artifacts (not standardized)
-2. **Information Structure**: The canonical form of extracted information (standardized)
+| Concern | Standardized by UIS? |
+|---------|---------------------|
+| How information is extracted | **NO** |
+| The structure of extracted information | **YES** |
 
-### 4.2 Mapping Production Methods
+### 4.2 Extraction Methods
 
-Information can be mapped from artifacts through various means:
+Information can be extracted from artifacts through any means:
 
-#### Human Interpretation
+| Method | Examples |
+|--------|----------|
+| Human interpretation | Expert review, manual data entry |
+| Artificial Intelligence | NLP, computer vision, LLMs |
+| Rule-based extraction | Regex, schema mapping, business rules |
+| Format parsers | JSON parser, XML parser, CSV reader |
+| Vendor connectors | SAP connector, Salesforce connector |
 
-- Subject matter experts review artifacts
-- Experts extract and structure information
-- Human judgment applies domain knowledge
-- **Suitable for**: Complex, ambiguous, or high-stakes information
-
-#### Artificial Intelligence
-
-- Machine learning models analyze artifacts
-- Natural language processing extracts text
-- Computer vision analyzes images
-- **Suitable for**: High volume, pattern recognition, multimodal analysis
-
-#### Rule-Based Extraction
-
-- Programmatic rules identify patterns
-- Regular expressions extract text
-- Schema mapping transforms structures
-- **Suitable for**: Structured artifacts with known formats
-
-#### Parsers
-
-- Format-specific parsers read artifact syntax
-- Extract structural elements
-- Transform to canonical form
-- **Suitable for**: Structured formats (JSON, XML, CSV)
-
-#### Vendor Connectors
-
-- Pre-built integrations with enterprise systems
-- Extract from proprietary formats
-- Handle vendor-specific quirks
-- **Suitable for**: Enterprise systems, legacy data
-
-### 4.3 Mapping Non-Standardization
+### 4.3 What UIS Does NOT Standardize
 
 UIS does NOT standardize:
-
-- How mapping is performed
-- Which mapping tool or service is used
-- Mapping algorithm specifics
-- Human qualifications for mapping
+- Extraction methods or tools
 - AI model architectures
+- Parser implementations
+- Human qualifications
+- Quality of extraction
+
+### 4.4 What UIS DOES Standardize
 
 UIS DOES standardize:
-
-- The structure of the canonical information record
+- The structure of canonical information records
 - Required and optional elements
 - Relationship types
 - Identity requirements
-- Provenance recording
+- Provenance (reference to source artifact)
 
 ---
 
@@ -263,191 +237,118 @@ UIS DOES standardize:
 
 ### 5.1 Concept Overview
 
-A **canonical information record** is the UIS-conformant representation of information extracted from artifacts. It serves as the universal unit of information in the UIS architecture.
+A **canonical information record** is the UIS-conformant representation of extracted information. It is the ONLY thing UIS standardizes.
 
 The canonical record is:
-- **Abstract**: Independent of any specific artifact format
-- **Structured**: Organized according to UIS information model
+- **Independent**: Works with any extraction method
+- **Structured**: Organized according to UIS specification
 - **Traceable**: References source artifacts
 - **Extensible**: Supports domain-specific extensions
 - **Interoperable**: Enables cross-domain information exchange
 
 ### 5.2 Candidate Universal Elements
 
-Based on analysis across domains, the following elements appear to be candidates for the canonical information record. These are not normative definitions—they represent elements under consideration.
+The following elements are candidates for the canonical record structure:
 
-#### Identity
+| Element | Purpose | Standardized by UIS? |
+|---------|---------|---------------------|
+| Identity | Unique identification of record | **YES** |
+| Classification | Type/category of record | **YES** |
+| Content | The extracted information | **YES** |
+| Relationships | Connections to other records | **YES** |
+| Provenance | Reference to source artifact | **YES** |
+| Evidence | Supporting evidence | Optional |
+| Confidence | Reliability indicator | Optional |
+| Version | Change tracking | Optional |
 
-Every canonical record should have an identifier that distinguishes it from other records. The identifier enables referencing and linking between records.
+### 5.3 Elements UIS Standardizes
 
-**Considerations**:
-- Global uniqueness vs. local uniqueness
-- Human-readable vs. system-generated
-- Persistence across versions
+These elements define the structure of canonical records:
 
-#### Classification
-
-Every canonical record should have a type or category that classifies its nature. Classification enables filtering, searching, and processing based on record type.
-
-**Considerations**:
-- Hierarchical vs. flat taxonomies
-- Domain-specific vs. universal classifications
-- Multiple classifications per record
-
-#### Content
-
-Every canonical record contains information content extracted from source artifacts. Content may be simple values, structured data, or references to other records.
-
-**Considerations**:
-- Typed values vs. untyped
-- Structured vs. unstructured
-- Complete extraction vs. reference-only
-
-#### Relationships
-
-Canonical records may reference other records through named relationships. Relationships enable graph structures and information networks.
-
-**Considerations**:
-- Relationship types and semantics
-- Cardinality (one-to-one, one-to-many)
-- Directionality (source-target)
-
-#### Provenance
-
-Every canonical record should record its origin, including the source artifact, the mapping process, and the mapper identity.
-
-**Considerations**:
-- Artifact reference (what was mapped)
-- Mapping metadata (when, how)
-- Mapper identification (who/what performed mapping)
-- Confidence in mapping accuracy
-
-#### Evidence References
-
-Canonical records may include references to evidence that supports or qualifies the information. Evidence enables assessment of information quality.
-
-**Considerations**:
-- Evidence types (direct, circumstantial)
-- Evidence strength
-- Evidence chains
-
-#### Confidence
-
-Canonical records may include confidence levels indicating the reliability of the mapped information. Confidence enables downstream systems to weight information appropriately.
-
-**Considerations**:
-- Confidence scale (probability, qualitative)
-- Confidence per element vs. per record
-- Confidence propagation
-
-#### Version
-
-Canonical records may have version information enabling tracking of changes over time. Versioning supports temporal queries and change analysis.
-
-**Considerations**:
-- Version numbering scheme
-- Change tracking
-- Temporal validity
-
-### 5.3 Element Status
-
-| Element | Status | Notes |
-|---------|--------|-------|
-| Identity | Candidate | Universal requirement |
-| Classification | Candidate | Universal requirement |
-| Content | Candidate | Universal requirement |
-| Relationships | Candidate | Universal capability |
-| Provenance | Candidate | Universal requirement |
-| Evidence References | Candidate | Widely applicable |
-| Confidence | Candidate | Optional/conditional |
-| Version | Candidate | Optional/conditional |
+- **Identity**: How records are uniquely identified
+- **Classification**: How records are categorized
+- **Content**: How extracted information is represented
+- **Relationships**: How records connect to each other
+- **Provenance**: How records reference source artifacts
 
 ---
 
 ## 6. Separation of Concerns
 
-### 6.1 Layer Responsibilities
+### 6.1 Clear Boundaries
 
-The architecture achieves clarity through strict separation of concerns:
+The architecture achieves clarity through strict separation:
 
-#### Artifacts Layer
+| Concern | Responsibility | Standardized by UIS? |
+|---------|---------------|---------------------|
+| Extraction | Outside UIS | NO |
+| Record Structure | UIS | **YES** |
+| Storage | Outside UIS | NO |
+| Search | Outside UIS | NO |
+| Analytics | Outside UIS | NO |
+| AI Reasoning | Outside UIS | NO |
 
-**Responsibility**: Preserve original information sources
+### 6.2 What Each Party Does
 
-- Maintain authentic records
-- Preserve native formats
-- Ensure access and integrity
-- **NOT responsible for**: Interoperability, standardization
+#### Extraction Systems (Outside UIS)
 
-#### Information Layer (Canonical Records)
+- Parse documents, images, databases
+- Run OCR, AI, NLP
+- Extract information
+- Produce UIS-conformant records
 
-**Responsibility**: Provide universal structure for information
+#### UIS Standard
 
-- Standardize information structure
-- Enable cross-domain mapping
-- Maintain traceability to sources
-- **NOT responsible for**: Meaning derivation, reasoning
+- Defines record structure
+- Specifies required elements
+- Enables interoperability
 
-#### Knowledge Layer
+#### Storage/Consumption Systems (Outside UIS)
 
-**Responsibility**: Derive meaning and support decisions
+- Store records in databases
+- Build search indexes
+- Apply analytics
+- Run AI models
 
-- Process information
-- Apply reasoning
-- Generate insights
-- **NOT responsible for**: Information structure, artifact preservation
+### 6.3 Concern Matrix
 
-#### Applications Layer
-
-**Responsibility**: Provide user-facing capabilities
-
-- Present information to users
-- Accept user input
-- Drive business processes
-- **NOT responsible for**: Information structure, artifact formats
-
-### 6.2 Concern Matrix
-
-| Concern | Artifacts | Information | Knowledge | Applications |
-|---------|-----------|-------------|-----------|--------------|
-| Format preservation | ✓ | | | |
-| Original fidelity | ✓ | | | |
-| Universal structure | | ✓ | | |
-| Cross-domain mapping | | ✓ | | |
-| Semantic reasoning | | | ✓ | |
-| Decision support | | | ✓ | |
-| User interaction | | | | ✓ |
-| Business logic | | | | ✓ |
+| Concern | Extraction | UIS Standard | Storage | Consumption |
+|---------|------------|--------------|---------|-------------|
+| Information extraction | ✓ | | | |
+| Record structure | | ✓ | | |
+| Storage mechanism | | | ✓ | |
+| Search implementation | | | | ✓ |
+| Analytics | | | | ✓ |
 
 ---
 
-## 7. Architectural Principles
+## 7. Core Principles
 
-### 7.1 Emerging Principles
+### 7.1 The Principles
 
-Based on the information mapping architecture, the following principles are emerging:
+Based on the scope clarification, the following principles guide UIS:
 
-#### Preserve Original Artifacts
+#### Extraction Independence
 
-> UIS shall not require modification or conversion of original artifacts.
+> UIS shall not define how information is extracted.
 
-**Rationale**: Ensures source fidelity and enables multiple independent mappings.
+**Rationale**: Allows any extraction method (AI, OCR, parsers, humans) to produce conformant records.
 
-#### Map Rather Than Replace
+#### Representation Focus
 
-> UIS provides a canonical representation that coexists with, not replaces, original artifacts.
+> UIS shall define only the structure of information records.
 
-**Rationale**: Enables interoperability without disrupting existing systems.
+**Rationale**: Single responsibility keeps UIS focused and stable.
 
-#### Evidence-First Architecture
+#### Source Provenance
 
-> UIS structures should support evidence representation before conclusions.
+> UIS records shall reference source artifacts.
 
-**Rationale**: Enables assessment of information quality and supports trust frameworks.
+**Rationale**: Enables traceability and trust in extracted information.
 
 #### Domain Neutrality
 
-> The canonical information model shall be applicable across all domains.
+> The canonical model shall be applicable across all domains.
 
 **Rationale**: Enables universal interoperability and prevents fragmentation.
 
@@ -465,151 +366,111 @@ Based on the information mapping architecture, the following principles are emer
 
 ### 7.2 Principle Hierarchy
 
-When principles conflict, the following hierarchy applies:
+When principles conflict:
 
-1. **Preserve Original Artifacts** (highest priority)
-2. **Map Rather Than Replace**
-3. **Domain Neutrality**
-4. **Implementation Independence**
-5. **Evidence-First Architecture**
+1. **Extraction Independence** (highest priority)
+2. **Representation Focus**
+3. **Source Provenance**
+4. **Domain Neutrality**
+5. **Implementation Independence**
 6. **Extensible Core**
 
 ---
 
 ## 8. Implications
 
-### 8.1 Interoperability
+### 8.1 What This Scope Enables
 
-**Positive Implications**:
-- UIS enables interoperability by mapping diverse artifacts to a common structure
-- Organizations can maintain existing artifacts while participating in information exchange
-- No single format dominates; all formats can be mapped
+| Benefit | How |
+|---------|-----|
+| Any extractor works | Extraction is outside UIS |
+| Any storage works | Storage is outside UIS |
+| Any consumer works | Consumption is outside UIS |
+| Interoperability | All produce/consume same record structure |
+| Longevity | UIS doesn't depend on extraction technology |
 
-**Considerations**:
-- Interoperability requires agreement on canonical structure, not just mappings
-- Semantic alignment still needed beyond structural mapping
+### 8.2 What This Scope Excludes
 
-### 8.2 Scalability
+UIS does not address:
 
-**Positive Implications**:
-- Mapping can be parallelized across artifacts
-- Each mapping is independent, enabling distributed processing
-- New mapping methods can be added without changing structure
+| Concern | Why Excluded |
+|---------|--------------|
+| Extraction quality | Varies by use case |
+| Storage mechanism | Technology-specific |
+| Search implementation | Use-case specific |
+| AI reasoning | Outside representation scope |
+| Business rules | Domain-specific |
 
-**Considerations**:
-- Mapping quality must be consistent across distributed efforts
-- Provenance requirements scale with mapping volume
+### 8.3 Integration Points
 
-### 8.3 Long-Term Maintainability
+UIS sits between extraction and consumption:
 
-**Positive Implications**:
-- Original artifacts preserved indefinitely
-- Mappings can be regenerated if structure evolves
-- Canonical records are independent of artifact formats
+```
+Extraction → [UIS] → Storage/Consumption
+```
 
-**Considerations**:
-- Artifact formats may become obsolete
-- Mappings must be maintained as UIS evolves
-- Long-term storage for both artifacts and canonical records required
-
-### 8.4 Compatibility with Existing Standards
-
-**Positive Implications**:
-- UIS complements rather than competes with existing standards
-- Existing metadata standards can be mapped to UIS
-- Domain-specific standards can coexist with UIS
-
-**Considerations**:
-- UIS does not replace domain standards
-- Mappings to UIS may be lossy
-- Standards organizations may need to define UIS mappings
-
-### 8.5 AI Integration
-
-**Positive Implications**:
-- AI systems can be used for mapping (extraction)
-- AI systems can consume canonical records for reasoning
-- UIS provides structured input for AI processing
-
-**Considerations**:
-- AI mapping quality must be assessable (confidence, evidence)
-- AI-generated content can be represented in canonical form
-- Human oversight may be needed for high-stakes applications
+Any system at each layer can be swapped independently.
 
 ---
 
 ## 9. Open Questions
 
-### 9.1 Architectural Questions
+### 9.1 Record Structure Questions
 
-**Q1**: Should the canonical information record include full extracted content or only references to artifact content?
+**Q1**: What are the mandatory elements of a canonical record?
 
-**Q2**: How should mapping quality be standardized without standardizing the mapping process?
+**Q2**: Should records include full extracted content or references to source artifacts?
 
-**Q3**: Should UIS define minimum provenance requirements for canonical records?
-
-**Q4**: How should conflicts between multiple mappings of the same artifact be handled?
+**Q3**: How should relationships between records be structured?
 
 ### 9.2 Scope Questions
 
-**Q5**: Does UIS address the mapping process or only the output structure?
+**Q4**: Should provenance be mandatory or optional?
 
-**Q6**: Should UIS provide reference mapping implementations as examples?
+**Q5**: Should UIS define extension mechanisms?
 
-**Q7**: How does UIS relate to AI-generated content—can AI outputs be artifacts?
+**Q6**: How should domain-specific types be accommodated?
 
-### 9.3 Interoperability Questions
+### 9.3 Conformance Questions
 
-**Q8**: Is semantic interoperability achievable at the canonical record level?
+**Q7**: What is required for a system to claim UIS conformance?
 
-**Q9**: How should domain-specific semantics be preserved while achieving structural interoperability?
+**Q8**: Does UIS conformance apply to extraction systems or only record structure?
 
-**Q10**: Should UIS include minimum semantic alignment requirements?
+### 9.4 Evolution Questions
 
-### 9.4 Governance Questions
+**Q9**: How should UIS evolve without breaking existing records?
 
-**Q11**: Who is responsible for mapping quality in the absence of standardized mapping processes?
-
-**Q12**: How should UIS evolution affect existing canonical records?
+**Q10**: How should conflicts between record producers be handled?
 
 ---
 
-## 10. Relationship to Other Documents
+## 10. Summary
 
-This architectural insight builds upon and synthesizes findings from:
+### 10.1 The Core Clarification
 
-| Document | Relationship |
-|----------|--------------|
-| DISCUSSION-0001 | Defines "information" foundations |
-| DISCUSSION-0002 | Evaluates scope candidates |
-| DISCUSSION-0003 | Establishes canonical model feasibility |
-| DISCUSSION-0004 | Defines boundaries and interfaces |
-| ADR-0001 | Proposes information as primary scope |
-| Architecture (005) | Provides architectural framework |
+UIS defines the canonical structure for representing extracted information. UIS does NOT define how information is extracted, stored, or consumed.
 
----
+### 10.2 The Scope Boundary
 
-## 11. Summary
+```
+Extraction → [UIS] → Storage/Consumption
+     ↑          ↓              ↑
+   Outside    UIS           Outside
+```
 
-### 11.1 Core Insight
+### 10.3 Key Points
 
-UIS maps information from artifacts into a canonical information model, preserving original artifacts and enabling interoperability through structure rather than format standardization.
+| Point | Description |
+|-------|-------------|
+| What UIS IS | Canonical record structure |
+| What UIS is NOT | Extraction, storage, consumption |
+| Who uses UIS | Extractor producers, consumer systems |
+| Interoperability | Through shared record structure |
 
-### 11.2 Key Characteristics
+### 10.4 Status
 
-| Characteristic | Implication |
-|----------------|-------------|
-| Artifact preservation | No forced conversion |
-| Mapping process non-standardization | Multiple methods allowed |
-| Canonical structure standardization | Universal interoperability |
-| Evidence-first | Quality assessment enabled |
-| Domain neutrality | Universal applicability |
-
-### 11.3 Status
-
-This document captures an architectural insight for future consideration. It does not constitute a normative specification or a binding architectural decision.
-
-The insights captured here may inform future ADRs and specification development.
+This document clarifies the scope of UIS. It is exploratory and does not constitute a normative specification.
 
 ---
 
@@ -623,12 +484,8 @@ The insights captured here may inform future ADRs and specification development.
 
 4. UIS. (2026). *Boundaries of UIS*. Discussion 0004. `docs/DISCUSSION-0004-boundaries.md`
 
-5. UIS. (2026). *UIS Scope Definition*. ADR 0001. `docs/adr/ADR-0001-uis-scope.md`
-
-6. UIS. (2026). *Architecture*. Working Draft 0.3.0. `docs/005-architecture.md`
-
-7. UIS. (2026). *Design Principles*. Working Draft 0.3.0. `docs/004-design-principles.md`
+5. UIS. (2026). *Scope*. `docs/001-scope.md`
 
 ---
 
-*This is an exploratory architectural insight document for UIS Working Draft development. It does not constitute normative specification content or architectural decisions.*
+*This is an exploratory architectural insight document for UIS development. It does not constitute normative specification content.*
