@@ -2,19 +2,20 @@
 
 This roadmap outlines the planned development trajectory for UIS, from initial specification through to established standard.
 
-## Version 0.1.0 — Initial Draft (Current)
+## Version 0.2.0 — Initial Draft (Current)
 
 **Status**: Working Draft
 
-Establishes the repository structure and section outlines for the specification.
+Establishes the repository structure, section outlines, and governance framework.
 
 ### Current Phase
 
 - [x] Repository establishment
 - [x] Documentation structure
-- [x] Section placeholders (0.1.0)
+- [x] Section placeholders
+- [x] Governance framework placeholders
 
-## Version 0.2.0 — Foundational Concepts
+## Version 0.3.0 — Foundational Concepts
 
 **Status**: Planned
 
@@ -27,17 +28,28 @@ Develops the foundational concepts upon which subsequent sections depend.
 - [ ] Normative References
 - [ ] Terms and Definitions
 - [ ] Design Principles
+- [ ] Architecture
 - [ ] Information Model
 
-## Version 0.3.0 — Core Framework
+## Version 0.4.0 — Requirements Framework
 
 **Status**: Planned
 
-Defines the core requirements and mechanisms.
+Defines the requirements framework.
 
 ### Planned Work
 
-- [ ] Core Requirements
+- [ ] General Requirements
+- [ ] Fundamental Requirements
+
+## Version 0.5.0 — Core Mechanisms
+
+**Status**: Planned
+
+Defines the core mechanisms.
+
+### Planned Work
+
 - [ ] Identity
 - [ ] Evidence
 - [ ] Relationships

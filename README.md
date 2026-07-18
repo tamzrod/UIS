@@ -23,14 +23,25 @@ The formal specification is organized into numbered sections within the `docs/` 
 - [Normative References](docs/002-normative-references.md) — Referenced standards and documents
 - [Terms and Definitions](docs/003-terms-and-definitions.md) — Terminology used in UIS
 - [Design Principles](docs/004-design-principles.md) — Fundamental principles guiding UIS design
-- [Information Model](docs/005-information-model.md) — Core abstract model
-- [Core Requirements](docs/006-core-requirements.md) — Mandatory requirements
-- [Identity](docs/007-identity.md) — Entity identification
-- [Evidence](docs/008-evidence.md) — Assertion support mechanisms
-- [Relationships](docs/009-relationships.md) — Entity connections
-- [Provenance](docs/010-provenance.md) — Origin and history tracking
-- [Conformance](docs/011-conformance.md) — Conformance requirements
-- [Versioning](docs/012-versioning.md) — Change management
+- [Architecture](docs/005-architecture.md) — High-level architectural framework
+- [Information Model](docs/006-information-model.md) — Core abstract model
+- [General Requirements](docs/006-general-requirements.md) — General requirements
+- [Fundamental Requirements](docs/007-fundamental-requirements.md) — Fundamental requirements
+- [Identity](docs/008-identity.md) — Entity identification
+- [Evidence](docs/009-evidence.md) — Assertion support mechanisms
+- [Relationships](docs/010-relationships.md) — Entity connections
+- [Provenance](docs/011-provenance.md) — Origin and history tracking
+- [Conformance](docs/012-conformance.md) — Conformance requirements
+- [Versioning](docs/013-versioning.md) — Change management
+
+### Governance
+
+Governance documents define the policies and procedures for UIS development:
+
+- [Specification Lifecycle](governance/000-specification-lifecycle.md) — Maturity stages and transitions
+- [Versioning Policy](governance/001-versioning-policy.md) — Version scheme and policies
+- [Decision Process](governance/002-decision-process.md) — Decision-making procedures
+- [Conformance Policy](governance/003-conformance-policy.md) — Conformance testing policies
 
 ## Non-Goals
 

@@ -5,6 +5,24 @@ All notable changes to the Universal Information Standard (UIS) are documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-07-18
+
+### Added
+
+- Architecture section ([#005](docs/005-architecture.md))
+- General Requirements section ([#006](docs/006-general-requirements.md))
+- Governance documents:
+  - [Specification Lifecycle](governance/000-specification-lifecycle.md)
+  - [Versioning Policy](governance/001-versioning-policy.md)
+  - [Decision Process](governance/002-decision-process.md)
+  - [Conformance Policy](governance/003-conformance-policy.md)
+
+### Changed
+
+- Renamed "Core Requirements" to "Fundamental Requirements" ([#007](docs/007-fundamental-requirements.md))
+- Renumbered specification sections to accommodate Architecture
+- Information Model moved to [#006](docs/006-information-model.md)
+
 ## [0.1.0] - 2026-07-18
 
 ### Changed
@@ -19,14 +37,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Normative References section ([#002](docs/002-normative-references.md))
 - Terms and Definitions section ([#003](docs/003-terms-and-definitions.md))
 - Design Principles section ([#004](docs/004-design-principles.md))
-- Information Model section ([#005](docs/005-information-model.md))
-- Core Requirements section ([#006](docs/006-core-requirements.md))
-- Identity section ([#007](docs/007-identity.md))
-- Evidence section ([#008](docs/008-evidence.md))
-- Relationships section ([#009](docs/009-relationships.md))
-- Provenance section ([#010](docs/010-provenance.md))
-- Conformance section ([#011](docs/011-conformance.md))
-- Versioning section ([#012](docs/012-versioning.md))
+- Information Model section ([#005](docs/005-information-model.md)) *(moved in 0.2.0)*
+- Fundamental Requirements section ([#007](docs/007-fundamental-requirements.md))
+- Identity section ([#008](docs/008-identity.md))
+- Evidence section ([#009](docs/009-evidence.md))
+- Relationships section ([#010](docs/010-relationships.md))
+- Provenance section ([#011](docs/011-provenance.md))
+- Conformance section ([#012](docs/012-conformance.md))
+- Versioning section ([#013](docs/013-versioning.md))
 
 ### Removed
 
@@ -42,4 +60,4 @@ UIS follows a versioning scheme appropriate for formal standards:
 - **Minor version**: Adds new capabilities without changing existing semantics
 - **Patch version**: Clarifications, corrections, or editorial changes
 
-See [Versioning](docs/012-versioning.md) for complete versioning policies.
+See [Versioning](docs/013-versioning.md) for complete versioning policies.
