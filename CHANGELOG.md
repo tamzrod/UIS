@@ -5,6 +5,15 @@ All notable changes to the Universal Information Standard (UIS) are documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-07-18
+
+### Authored
+
+- [001 Scope](docs/001-scope.md) — Field of application, objectives, and boundaries
+- [003 Terms and Definitions](docs/003-terms-and-definitions.md) — Essential vocabulary
+- [004 Design Principles](docs/004-design-principles.md) — Core philosophy
+- [005 Architecture](docs/005-architecture.md) — Conceptual layers and relationships
+
 ## [0.2.0] - 2026-07-18
 
 ### Added

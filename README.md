@@ -7,8 +7,26 @@
 | Attribute | Value |
 |-----------|-------|
 | Status | Working Draft |
-| Version | 0.1.0 |
+| Version | 0.3.0 |
 | Stability | Experimental |
+
+### Draft Progress
+
+| Document | Status |
+|----------|--------|
+| 001 Scope | **Authored** |
+| 003 Terms and Definitions | **Authored** |
+| 004 Design Principles | **Authored** |
+| 005 Architecture | **Authored** |
+| 006 Information Model | Placeholder |
+| 006 General Requirements | Placeholder |
+| 007 Fundamental Requirements | Placeholder |
+| 008 Identity | Placeholder |
+| 009 Evidence | Placeholder |
+| 010 Relationships | Placeholder |
+| 011 Provenance | Placeholder |
+| 012 Conformance | Placeholder |
+| 013 Versioning | Placeholder |
 
 ## About UIS
 
