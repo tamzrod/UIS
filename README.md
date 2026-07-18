@@ -2,6 +2,14 @@
 
 **Universal Information Standard (UIS)** is an open specification for representing information in a structured, interoperable, and implementation-independent format.
 
+## Status
+
+| Attribute | Value |
+|-----------|-------|
+| Status | Working Draft |
+| Version | 0.1.0 |
+| Stability | Experimental |
+
 ## About UIS
 
 UIS provides a universal, domain-neutral model for representing information that can be applied across various domains and industries. The specification defines concepts, terminology, principles, requirements, and conformance criteria without prescribing specific implementation technologies.
@@ -16,12 +24,27 @@ The formal specification is organized into numbered sections within the `docs/` 
 - [Terms and Definitions](docs/003-terms-and-definitions.md) — Terminology used in UIS
 - [Design Principles](docs/004-design-principles.md) — Fundamental principles guiding UIS design
 - [Information Model](docs/005-information-model.md) — Core abstract model
-- [Information Objects](docs/006-information-objects.md) — Structured information entities
-- [Evidence](docs/007-evidence.md) — Mechanisms for supporting assertions
-- [Relationships](docs/008-relationships.md) — Connections between information entities
-- [Provenance](docs/009-provenance.md) — Origin and history tracking
-- [Versioning](docs/010-versioning.md) — Version management and evolution
-- [Conformance](docs/011-conformance.md) — Conformance requirements and testing
+- [Core Requirements](docs/006-core-requirements.md) — Mandatory requirements
+- [Identity](docs/007-identity.md) — Entity identification
+- [Evidence](docs/008-evidence.md) — Assertion support mechanisms
+- [Relationships](docs/009-relationships.md) — Entity connections
+- [Provenance](docs/010-provenance.md) — Origin and history tracking
+- [Conformance](docs/011-conformance.md) — Conformance requirements
+- [Versioning](docs/012-versioning.md) — Change management
+
+## Non-Goals
+
+UIS is NOT:
+
+- a database
+- a programming library
+- a file format
+- an ontology language
+- an AI model
+- a search engine
+- an application framework
+
+UIS defines concepts and requirements; it does not prescribe implementations.
 
 ## Design Philosophy
 

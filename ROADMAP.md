@@ -2,42 +2,54 @@
 
 This roadmap outlines the planned development trajectory for UIS, from initial specification through to established standard.
 
-## Version 1.0 — Foundation
+## Version 0.1.0 — Initial Draft (Current)
 
-**Status**: In Development
+**Status**: Working Draft
 
-The 1.0 release establishes the core specification for representing information in a structured, domain-neutral manner.
+Establishes the repository structure and section outlines for the specification.
 
-### Phase 1: Core Specification (Current Phase)
+### Current Phase
 
 - [x] Repository establishment
-- [x] Initial documentation structure
-- [ ] Foreword — History and development context
-- [ ] Scope — Field of application and objectives
-- [ ] Normative References — Related standards and dependencies
-- [ ] Terms and Definitions — Vocabulary and terminology
-- [ ] Design Principles — Fundamental principles
-- [ ] Information Model — Abstract model for information
-- [ ] Information Objects — Structured information entities
-- [ ] Evidence — Supporting assertions with information
-- [ ] Relationships — Connections between entities
-- [ ] Provenance — Origin and history tracking
-- [ ] Versioning — Version management policies
-- [ ] Conformance — Requirements and conformance testing
+- [x] Documentation structure
+- [x] Section placeholders (0.1.0)
 
-### Phase 2: Review and Refinement
+## Version 0.2.0 — Foundational Concepts
 
-- [ ] Public review period
-- [ ] Incorporation of feedback
-- [ ] Terminology harmonization
-- [ ] Cross-reference validation
-- [ ] Editorial review and correction
+**Status**: Planned
 
-### Phase 3: Publication
+Develops the foundational concepts upon which subsequent sections depend.
 
-- [ ] Final specification text lock
-- [ ] Conformance language finalization
-- [ ] Publication preparation
+### Planned Work
+
+- [ ] Foreword
+- [ ] Scope
+- [ ] Normative References
+- [ ] Terms and Definitions
+- [ ] Design Principles
+- [ ] Information Model
+
+## Version 0.3.0 — Core Framework
+
+**Status**: Planned
+
+Defines the core requirements and mechanisms.
+
+### Planned Work
+
+- [ ] Core Requirements
+- [ ] Identity
+- [ ] Evidence
+- [ ] Relationships
+- [ ] Provenance
+- [ ] Conformance
+- [ ] Versioning
+
+## Version 1.0.0 — Foundation Release
+
+**Status**: Planned
+
+First stable release of the core specification.
 
 ## Future Directions
 
@@ -45,7 +57,7 @@ The following areas may be addressed in subsequent versions:
 
 ### Version 1.1 — Extensions
 
-- Additional information object types
+- Information object definitions
 - Extended relationship semantics
 - Enhanced provenance mechanisms
 
