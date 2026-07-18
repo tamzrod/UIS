@@ -2,7 +2,7 @@
 
 **Document Date**: 2026-07-18
 **Source**: Editorial Review Report (REVIEW-0.3.0.md)
-**Status**: Pending Committee Review
+**Status**: Pending Decision
 **Decisions Required**: 8
 **Decisions Deferred**: 10
 
@@ -16,8 +16,10 @@ Each issue has been reclassified as one of:
 |---------------|------------|---------------------|
 | **Editorial** | Grammar, phrasing, clarity | Editor |
 | **Structural** | Internal document consistency | Document Author |
-| **Normative** | Conformance requirements | Committee Vote |
-| **Fundamental Design Decision (FDD)** | Core architectural choices affecting specification scope | Consensus Required |
+| **Normative** | Conformance requirements | Architectural Decision Required |
+| **Fundamental Design Decision (FDD)** | Core architectural choices affecting specification scope | Architectural Decision Required |
+
+**Note**: "Architectural Decision Required" means the decision follows the process defined in [governance/002-decision-process.md](governance/002-decision-process.md). The specific authority depends on the governance model in effect.
 
 ---
 
@@ -517,21 +519,21 @@ These issues do not require immediate committee action and may be resolved by th
 
 | ID | Issue | Classification | Authority | Status |
 |----|-------|---------------|-----------|--------|
-| DECISION-001 | Encoding Scope | FDD | Committee | **Required** |
-| DECISION-002 | Profile Status | FDD | Committee | **Required** |
-| DECISION-003 | Principle Hierarchy | FDD | Committee | **Required** |
-| DECISION-004 | Schema Definition | FDD | Committee | **Required** |
-| DECISION-005 | State Definition | FDD | Committee | **Required** |
-| DECISION-006 | System Scope | FDD | Committee | **Required** |
-| DECISION-007 | Circular Definition | Normative | Committee | **Required** |
-| DECISION-008 | Extension Taxonomy | FDD | Committee | **Required** |
+| DECISION-001 | Encoding Scope | FDD | Architectural Decision | **Required** |
+| DECISION-002 | Profile Status | FDD | Architectural Decision | **Required** |
+| DECISION-003 | Principle Hierarchy | FDD | Architectural Decision | **Required** |
+| DECISION-004 | Schema Definition | FDD | Architectural Decision | **Required** |
+| DECISION-005 | State Definition | FDD | Architectural Decision | **Required** |
+| DECISION-006 | System Scope | FDD | Architectural Decision | **Required** |
+| DECISION-007 | Circular Definition | Normative | Architectural Decision | **Required** |
+| DECISION-008 | Extension Taxonomy | FDD | Architectural Decision | **Required** |
 | DEFERRED-001 to 009 | Various | Editorial/Structural | Editor/Author | Deferred |
 
 ---
 
-## Voting Requirements
+## Decision Process Requirements
 
-For advancement to Working Draft 0.4.0, the following decisions require committee approval:
+For advancement to Working Draft 0.4.0, the following decisions require **Architectural Decision** per the Decision Process (governance/002-decision-process.md):
 
 1. **DECISION-001**: Encoding Scope Boundary
 2. **DECISION-002**: Profile Normative Status
@@ -542,7 +544,13 @@ For advancement to Working Draft 0.4.0, the following decisions require committe
 7. **DECISION-007**: Circular Definition Resolution Method
 8. **DECISION-008**: Extension Point Taxonomy
 
-Approval requires consensus of the committee or a defined majority vote per the Decision Process (governance/002-decision-process.md).
+Each decision shall be documented as an Architectural Decision Record (ADR) and recorded in this log with status Accepted, Rejected, or Deferred.
+
+| Governance Model | Decision Authority |
+|------------------|-------------------|
+| Single Author | Author documents decision; no external approval required |
+| Open Community | ADR with community review period |
+| Formal Organization | Committee vote per organizational policy |
 
 ---
 

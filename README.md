@@ -58,8 +58,10 @@ Governance documents define the policies and procedures for UIS development:
 
 - [Specification Lifecycle](governance/000-specification-lifecycle.md) — Maturity stages and transitions
 - [Versioning Policy](governance/001-versioning-policy.md) — Version scheme and policies
-- [Decision Process](governance/002-decision-process.md) — Decision-making procedures
+- [Decision Process](governance/002-decision-process.md) — Roles and decision procedures
 - [Conformance Policy](governance/003-conformance-policy.md) — Conformance testing policies
+
+UIS governance is designed to scale from single-author development to formal standards organizations. See the Decision Process document for details on governance roles (Author, Editor, Reviewer, Approver).
 
 ## Non-Goals
 
